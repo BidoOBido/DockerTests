@@ -15,7 +15,7 @@ At the moment the structure is:
 - Postgres: contains the script which will be first executed after ```database-postgres``` service start running.
 - Java: contains the base code of a simple api that manipulate data from database on db container:
   
-    ``` bash
+    ``` text
     The "app" container (java-api service on yml file) is a image of openjdk-11 thus I'm using Visual Studio Cod attached to this container to run the api, all network configuration is set to work in this way
     ```
 
