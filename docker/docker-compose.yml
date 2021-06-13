@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+    database-postgres:
+        image: postgres
+        container_name: db
+        environment: 
+            POSTGRES_USER: user_test
+            POSTGRES_PASSWORD: PsswrdPstgrs01470258369
+            POSTGRES_DB: mocked_data
+        volumes: 
+            - ../postgres:/docker-entrypoint-initdb.d
+
+    java-api:
+        image: openjdk:11
+        container_name: app
+        volumes: 
+            - ../java:/home
+        depends_on: 
+            - database-postgres
+        command: tail -F anything
