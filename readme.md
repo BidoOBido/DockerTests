@@ -21,4 +21,14 @@ At the moment the structure is:
 
 ----
 
-Next goal is use a container to run Apache Kafka, and change the java api to publish/read data from/on on Kafka topics.
+Kafka runs in ```kafka:29092```, infos about containers, brookers and messsages can be seen using Kafdrop which is running on ```localhost:19000```
+
+On containers startup, the database will be populated with some mock values, after that you can:
+
+- Access the endpoint ```localhost:8080/values/```, that returns all values existing on database;
+- Access the endpoint ```localhost:8080/values/inconsitences/```, that will return all values which first and second values aren't equal;
+- Access the endpoint ```localhost:8080/values/sendAllValuesKafka```, that will publish all data in topic ```inconsistences``` on kafka.
+
+----
+
+Next goal is build some visual app in flutter to consume the messages existing on kafka in ```inconsitence``` topic.
