@@ -14,13 +14,19 @@ services:
       - ../postgres:/docker-entrypoint-initdb.d
 
   java-api:
-    image: openjdk:11
+    image: maven:3-jdk-11
     container_name: app
     volumes:
       - ../java:/home
     depends_on:
       - database-postgres
-    command: tail -F anything
+    ports:
+        - 8080:8080
+    command: >
+      bash -c
+      "sleep 5s &&
+      java -jar /home/target/teste-0.0.1-SNAPSHOT.jar" &&
+      tail -F anything 
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest

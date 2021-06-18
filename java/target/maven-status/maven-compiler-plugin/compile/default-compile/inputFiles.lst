@@ -1,0 +1,6 @@
+/home/src/main/java/com/bido/teste/model/MockedValues.java
+/home/src/main/java/com/bido/teste/controller/MockedValuesController.java
+/home/src/main/java/com/bido/teste/service/MockedValuesService.java
+/home/src/main/java/com/bido/teste/repository/MockedValuesRepository.java
+/home/src/main/java/com/bido/teste/TesteApplication.java
+/home/src/main/java/com/bido/teste/kafka/Producer.java
