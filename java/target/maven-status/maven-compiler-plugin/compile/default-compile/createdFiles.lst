@@ -1,6 +1,0 @@
-com/bido/teste/model/MockedValues.class
-com/bido/teste/repository/MockedValuesRepository.class
-com/bido/teste/kafka/Producer.class
-com/bido/teste/service/MockedValuesService.class
-com/bido/teste/controller/MockedValuesController.class
-com/bido/teste/TesteApplication.class

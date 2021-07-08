@@ -13,19 +13,28 @@ services:
     volumes:
       - ../postgres:/docker-entrypoint-initdb.d
 
-  java-api:
+  java-api-producer:
     image: maven:3-jdk-11
-    container_name: app
+    container_name: producer
     volumes:
-      - ../java:/home
+      - ../java-producer:/home
     depends_on:
       - database-postgres
     ports:
-        - 8080:8080
+        - 18080:8080
     command: >
-      bash -c
-      "sleep 5s &&
-      java -jar /home/target/teste-0.0.1-SNAPSHOT.jar" &&
+      tail -F anything 
+
+  java-api-consumer:
+    image: maven:3-jdk-11
+    container_name: consumer
+    volumes:
+      - ../java-consumer:/home
+    depends_on:
+      - kafka
+    ports:
+        - 28080:8080
+    command: >
       tail -F anything 
 
   zookeeper:
