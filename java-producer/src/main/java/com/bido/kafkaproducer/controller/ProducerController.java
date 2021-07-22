@@ -3,7 +3,7 @@ package com.bido.kafkaproducer.controller;
 import java.util.List;
 
 import com.bido.kafkaproducer.model.MockedValues;
-import com.bido.kafkaproducer.service.MockedValuesService;
+import com.bido.kafkaproducer.service.ProducerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/values")
 @EnableScheduling
-public class MockedValuesController {
+public class ProducerController {
 
     @Autowired
-    private MockedValuesService service;
+    private ProducerService service;
 
     @GetMapping()
     public ResponseEntity<List<MockedValues>> getAllValues() {

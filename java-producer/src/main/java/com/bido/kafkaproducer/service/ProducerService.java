@@ -13,7 +13,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 @Service()
-public class MockedValuesService {
+public class ProducerService {
 
     @Autowired
     private MockedValuesRepository repository;
