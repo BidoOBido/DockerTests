@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  database-postgres:
+  database-postgres-original:
     image: postgres
-    container_name: db
+    container_name: db_original
     ports:
       - 54321:5432
     environment:
@@ -11,7 +11,19 @@ services:
       POSTGRES_PASSWORD: PsswrdPstgrs01470258369
       POSTGRES_DB: mocked_data
     volumes:
-      - ../postgres:/docker-entrypoint-initdb.d
+      - ../postgres/original:/docker-entrypoint-initdb.d
+
+  database-postgres-destination:
+    image: postgres
+    container_name: db_destination
+    ports:
+      - 54322:5432
+    environment:
+      POSTGRES_USER: user_test
+      POSTGRES_PASSWORD: PsswrdPstgrs01470258369
+      POSTGRES_DB: inconsistence_data
+    volumes:
+      - ../postgres/destination:/docker-entrypoint-initdb.d
 
   java-api-producer:
     image: maven:3-jdk-11
@@ -19,12 +31,13 @@ services:
     volumes:
       - ../java-producer:/home
     depends_on:
-      - database-postgres
+      - database-postgres-original
     ports:
         - 18080:8080
     command: >
-      tail -F anything 
-
+      tail -F anything
+#      bash -c "cd /home && java -jar target/kafkaproducer-0.0.1-SNAPSHOT.jar" && 
+    
   java-api-consumer:
     image: maven:3-jdk-11
     container_name: consumer
@@ -32,10 +45,12 @@ services:
       - ../java-consumer:/home
     depends_on:
       - kafka
+      - database-postgres-destination
     ports:
         - 28080:8080
     command: >
-      tail -F anything 
+      tail -F anything    
+#      bash -c "cd /home && java -jar target/kafkaconsumer-0.0.1-SNAPSHOT.jar" && 
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
